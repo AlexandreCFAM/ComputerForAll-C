@@ -1,7 +1,0 @@
-Scheduler   KEYWORD1
-Task    KEYWORD1
-AddTask KEYWORD2
-run KEYWORD2
-init    KEYWORD2
-InitTask    KEYWORD2
-IsReady KEYWORD2

@@ -1,10 +1,10 @@
 English : 
 
-#I'd like to be able to run a µkernel on all µc written in C and to have real applications such as :
+I'd like to be able to run a µkernel on all µc written in C and to have real applications such as :
     - a text editor
     - a command interpreter
     - a virtual keyboard controller
-Consider all the directorys as libraries. You need to code a main file wich call of the rest. I will try to make examples based on Arduino.
+Consider all the directorys as libraries. You need to code a main file wich call all the rest. I will try to make examples based on Arduino.
 
 Français : 
 

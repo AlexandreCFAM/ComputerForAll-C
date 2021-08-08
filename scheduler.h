@@ -8,7 +8,7 @@
 namespace Scheduler
 {
     extern unsigned char TasksCount;
-    extern struct Task *TasksList[10];
+    extern struct Task *TasksList[TASKS_NUMBER];
     extern unsigned char count;
     bool AddTask(struct Task *task);
     void run();
