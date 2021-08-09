@@ -3,7 +3,6 @@
 
 struct Task
 {
-    // unsigned char Priority;
     int TimeWait;
     void (*Function)();
     void run();
@@ -13,6 +12,7 @@ struct Task
     void init();
     bool IsReady();
 };
+
 void InitTask(int TimeWait, void (*Function)(), unsigned long (*GetCurrentTime)(), struct Task *task);
 
 #endif
