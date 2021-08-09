@@ -3,12 +3,13 @@
 
 struct Task
 {
-    unsigned char Priority;
+    // unsigned char Priority;
     int TimeWait;
     void (*Function)();
     void run();
     unsigned long (*GetCurrentTime)();
     unsigned long LastTime;
+    unsigned long LastTimeExecution; //Si on a besoin de savoir à quand remonte l'exécution de la tâche
     void init();
     bool IsReady();
 };

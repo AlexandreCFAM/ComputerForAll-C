@@ -9,11 +9,12 @@ void Task::run()
 void Task::init()
 {
     Task::LastTime = Task::GetCurrentTime();
+    Task::LastTimeExecution = Task::GetCurrentTime();
 }
 
 void InitTask(int TimeWait, void (*Function)(), unsigned long (*GetCurrentTime)(), struct Task *task)
 {
-    task->Priority = 0;
+    // task->Priority = 0;
     task->TimeWait = TimeWait;
     task->Function = Function;
     task->GetCurrentTime = GetCurrentTime;

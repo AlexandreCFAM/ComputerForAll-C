@@ -26,7 +26,7 @@ void Scheduler::run()
         {
             Scheduler::TasksList[Scheduler::count]->run();
             Scheduler::TasksList[Scheduler::count]->LastTime = Scheduler::TasksList[Scheduler::count]->GetCurrentTime();
-        }
+        }else;
     }
 
 }

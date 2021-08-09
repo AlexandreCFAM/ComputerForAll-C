@@ -1,16 +1,15 @@
-#include "VirtualPWM.h"
+#include "task.h"
 #include "scheduler.h"
+#include "Arduino.h"
 
-struct VirtualPWM vp;
+struct Task task1;
+struct Task task2;
 
 void setup()
 {
   Serial.begin(9600);
-  pinMode(2, OUTPUT);
-  vp.pin = 2;
-  vp.rapport = 0.90;
-  vp.init(&function);
-  
+  InitTask(500, &FirstMessage, &millis, &task1);
+  InitTask(1500, &SecondMessage, &millis, &task2);
 }
 
 void loop()
@@ -18,9 +17,12 @@ void loop()
   Scheduler::run();
 }
 
-void function()
+void FirstMessage()
 {
-  digitalWrite(2, HIGH);
-  delay((int)(vp.T*vp.rapport));
-  digitalWrite(2, LOW);
+  Serial.println("Message 1!");
+}
+
+void SecondMessage()
+{
+  Serial.println("Message 2!");
 }
