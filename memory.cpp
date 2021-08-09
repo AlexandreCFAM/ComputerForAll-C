@@ -12,6 +12,12 @@ unsigned int memory::uivars[SIZE_CHUNK];
 unsigned char memory::ucvars[SIZE_CHUNK];
 unsigned char memory::ax;
 
+bool *bptr = NULL;
+char *cptr = NULL;
+int *iptr = NULL;
+unsigned int *uiptr = NULL;
+unsigned char *ucptr = NULL;
+
 bool memory::init()
 {
     int MemoryCount = 0;

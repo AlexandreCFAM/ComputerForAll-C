@@ -3,12 +3,11 @@
 #include "memory.h"
 #include "task.h"
 
-struct Task PowerTask;
-
 Power PowerManager;
 
 void Power::init()
 {
+    struct Task PowerTask;
     InitTask(5250, &PowerTaskFunction, &millis, &PowerTask);
 }
 

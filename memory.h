@@ -23,4 +23,10 @@ namespace memory
     bool free(void *adrs, char id);
 };
 
+extern bool *bptr;
+extern char *cptr;
+extern int *iptr;
+extern unsigned int *uiptr;
+extern unsigned char *ucptr;
+
 #endif
