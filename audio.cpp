@@ -1,35 +1,27 @@
 #include "audio.h"
 #include "Arduino.h"
-#include "task.h"
-
-struct Task SpeakerON;
-struct Task SpeakerOFF;
+#include "timer.h"
 
 Audio audio;
 
 void Audio::init()
 {
-    Audio::activation = false;
+    Serial.println(F("Starting audio driver..."));
     pinMode(SPEAKER_PIN, OUTPUT);
-    InitTask(10000, &SpeakerONFunction, &millis, &SpeakerON);
-    InitTask(10000, &SpeakerOFFFunction, &millis, &SpeakerOFF);
+    Audio::SpeakerState = false;
 }
 
 void Audio::buzz(short int frequency, short int delay)
 {
-    Audio::period = (short int)((1/(float)(frequency*2)) * 1000000);
+    if(timer.IsUsed) timer.stop();
+    else
+    {
+        timer.update((int)((1.00 / (frequency * 2.00)) * 1000000), &SpeakerFunction);
+    }
 }
 
-void SpeakerONFunction()
+void SpeakerFunction()
 {
-    if(audio.activation) digitalWrite(SPEAKER_PIN, HIGH);
-    else;
-    // Serial.println("on");
-}
-
-void SpeakerOFFFunction()
-{
-    if(audio.activation) digitalWrite(SPEAKER_PIN, LOW);
-    else;
-    // Serial.println("off");
+    digitalWrite(SPEAKER_PIN, audio.SpeakerState);
+    audio.SpeakerState = !audio.SpeakerState;
 }

@@ -7,8 +7,11 @@ Power PowerManager;
 
 void Power::init()
 {
+    Serial.println(F("Starting PowerManager..."));
     struct Task PowerTask;
     InitTask(5250, &PowerTaskFunction, &millis, &PowerTask);
+    pinMode(POWER_BUTTON, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(POWER_BUTTON), ISR_POWER_BUTTON, FALLING);
 }
 
 float Power::voltage()
@@ -33,4 +36,9 @@ void PowerTaskFunction()
 {
     if(!PowerManager.state()) Serial.println("Power too low !");
     else;
+}
+
+void ISR_POWER_BUTTON()
+{
+    while(1);
 }

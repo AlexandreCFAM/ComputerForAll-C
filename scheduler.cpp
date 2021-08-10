@@ -25,7 +25,8 @@ void Scheduler::run()
         if(Scheduler::TasksList[Scheduler::count]->IsReady())
         {
             Scheduler::TasksList[Scheduler::count]->run();
-            Scheduler::TasksList[Scheduler::count]->LastTime = Scheduler::TasksList[Scheduler::count]->GetCurrentTime();
+            // Scheduler::TasksList[Scheduler::count]->LastTime = Scheduler::TasksList[Scheduler::count]->GetCurrentTime();
+            Scheduler::TasksList[Scheduler::count]->LastTime += Scheduler::TasksList[Scheduler::count]->TimeWait;
         }else;
     }
 

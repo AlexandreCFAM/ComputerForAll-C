@@ -43,14 +43,11 @@ class Audio
 public:
     void init();
     void buzz(short int frequency, short int delay);
-    short int period;
-    bool activation;
-private:
-    short int frequency;
+    bool SpeakerState;
 };
 
+void SpeakerFunction();
+
 extern Audio audio;
-void SpeakerONFunction();
-void SpeakerOFFFunction();
 
 #endif
