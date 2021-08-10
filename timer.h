@@ -1,21 +1,13 @@
-#ifndef __KERNEL__TIMER__H
-#define __KERNEL__TIMER__H
+#ifndef __TIMER__KERNEL__H
+#define __TIMER__KERNEL__H
 
-class Timer
+class Timer2
 {
 public:
-    void init(unsigned long period, void (*function)());
-    short int count;
-    unsigned int noverflow;
-    void update(unsigned long period);
-    void update(unsigned long period, void (*function)()); //Pour changer la fonction si on a besoin
-    void (*Function)();
-    bool IsUsed; //Permet de dire aux autres fonctions que le timer est déjà utilisé et qu'il faut attendre
-    void stop();
+    void init();
+    unsigned long OverflowCount;
 };
 
-extern Timer timer;
-
-void TimerFunctionExample();
+extern Timer2 timer2;
 
 #endif

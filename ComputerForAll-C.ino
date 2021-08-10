@@ -8,12 +8,10 @@
 void setup()
 {
   Serial.begin(9600);
-  // delay(500);
   Serial.println(F("Booting kernel..."));
   PowerManager.init();
+  timer2.init();
   audio.init();
-  audio.buzz(440, 150);
-  // audio.buzz(440, 150);
 }
 
 void loop()

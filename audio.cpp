@@ -13,15 +13,15 @@ void Audio::init()
 
 void Audio::buzz(short int frequency, short int delay)
 {
-    if(timer.IsUsed) timer.stop();
+    /*if(timer.IsUsed) timer.stop();
     else
     {
         timer.update((int)((1.00 / (frequency * 2.00)) * 1000000), &SpeakerFunction);
-    }
+    }*/
 }
 
 void SpeakerFunction()
 {
-    digitalWrite(SPEAKER_PIN, audio.SpeakerState);
-    audio.SpeakerState = !audio.SpeakerState;
+    /*digitalWrite(SPEAKER_PIN, audio.SpeakerState);
+    audio.SpeakerState = !audio.SpeakerState;*/
 }

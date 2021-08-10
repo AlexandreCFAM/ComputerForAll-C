@@ -1,53 +1,25 @@
-#include "timer.h"
 #include "Arduino.h"
-#include "task.h"
+#include "timer.h"
 
-Timer timer;
+#define TIMER2_PERIOD 0.5 //µs
 
-void Timer::init(unsigned long period, void (*function)())
+Timer2 timer2;
+
+void Timer2::init()
 {
-    Serial.println("Setting up timer...");
-    Timer::update(period);
-    Timer::Function = function;
-}
-
-ISR (TIMER2_OVF_vect)
-{
-    TCNT2 = 0;
-    timer.count++;
-    if(timer.count >= timer.noverflow)
-    {
-        timer.count = 0;
-        if(timer.IsUsed) timer.Function();
-        else;       
-    }else;
-}
-
-void Timer::update(unsigned long period)
-{
-    IsUsed = true;
-    //Un débordement = 4096 µs donc pour p µs il faut : (int)p/4096
-    noverflow = (unsigned int)(period / 4096);
-    count = 0;
-    TCCR2A = 0;
-    TCCR2B = 0b00000110; // horloge / 256
+    Serial.println("Setting up timer 2...");
+    cli();
+    bitClear(TCCR2A, WGM20);
+    bitClear(TCCR2A, WGM21);
+    TCCR2B = 0b00000010;
     TIMSK2 = 0b00000001;
     TCNT2 = 0;
     sei();
+    Timer2::OverflowCount = 0;
 }
 
-void Timer::update(unsigned long period, void (*function)())
+ISR(TIMER2_OVF_vect)
 {
-    Timer::Function = function;
-    Timer::update(period);
-}
-
-void Timer::stop()
-{
-    IsUsed = false;
-}
-
-void TimerFunctionExample()
-{
-    Serial.println("salut!");
+    TCNT2 = 0;
+    timer2.OverflowCount++;
 }
